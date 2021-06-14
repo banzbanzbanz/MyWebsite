@@ -1,2 +1,1 @@
-# MyWebsite
-My Personal Website
+# Paul Banzali Personal Website
