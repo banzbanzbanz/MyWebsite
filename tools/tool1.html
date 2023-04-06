@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Input App</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<h1>Comma separator tool</h1>
+	<p>Input text separated by new line</p>
+	<textarea id="userInput" rows="10" cols="50"></textarea>
+	<br>
+	<label>
+		<input type="checkbox" id="surroundQuotes"> Surround each input with single quotes
+	</label>
+	<br>
+	<label>
+		<input type="checkbox" id="includeQuotes"> Include single quotes in output
+	</label>
+	<br>
+	<br>
+	<button onclick="processInput()">Process Input</button>
+	<p id="output"></p>
+
+	<script>
+		function processInput() {
+			// Get the user input
+			const userInput = document.getElementById("userInput").value.trim();
+
+			// Split the input into an array of lines
+			const inputArray = userInput.split(/\r?\n/);
+
+			// Surround each line with single quotes, if requested
+			let outputArray = inputArray;
+			const surroundQuotes = document.getElementById("surroundQuotes").checked;
+			if (surroundQuotes) {
+				outputArray = inputArray.map(input => "'" + input + "'");
+			}
+
+			// Join the output array with commas
+			let output = outputArray.join(", ");
+
+			// Include single quotes in output, if requested
+			const includeQuotes = document.getElementById("includeQuotes").checked;
+			if (includeQuotes) {
+				output = "'" + output + "'";
+			}
+
+			// Display the output
+			document.getElementById("output").textContent = output;
+		}
+	</script>
+</body>
+</html>
